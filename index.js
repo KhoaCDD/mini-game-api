@@ -24,15 +24,41 @@ app.get('/connect', (req, res) => {
 
 let nexPersonId = 3;
 
+app.post('/cham-bai-test', (req, res) => {
+  try {    
+    var logFile = req.files;
+  
+    //console.log(logFile);
+    var buffer = Buffer.from(logFile.files.data);
+    const fileLines = (buffer.toString('utf8'));
+    const lines = fileLines.split(' ');
+    //console.log(lines)
+    const name = logFile.files.name.split('.')[0]
+    let rs = 0;
+    const ans1 = [2,5]
+    lines.forEach((ans, index) => {
+      if (ans1[index] == ans ) {
+        rs++
+      }
+    })
+    console.log(`Điểm của ${name}: ${rs}`)
+    res.send(`Điểm của ${name}: ${rs}`);
+  } catch (error) {
+    console.log(error)
+    res.send("submit fail roi em");
+  }
+ 
+});
+
 app.post('/cham-bai', (req, res) => {
   try {    
     var logFile = req.files;
   
-    console.log(logFile);
+    //console.log(logFile);
     var buffer = Buffer.from(logFile.files.data);
     const fileLines = (buffer.toString('utf8'));
     const lines = fileLines.split(' ');
-    console.log(lines)
+    //console.log(lines)
     const name = logFile.files.name.split('.')[0]
     let rs = 0;
     lines.forEach((ans, index) => {
@@ -82,6 +108,13 @@ const questions = [
 app.get('/cau-hoi/:id', (req, res) => {
   try {
     const id = +req.params.id;
+    if (id == 0) {
+      res.send(`1.
+Ngôn ngữ nhị phân gồm bao nhiêu chữ số ?
+2.
+1 Team Liên minh huyền thoại gồm bao nhiêu vị trí ?`)
+      return
+    }
 
     const question = questions.find(q => q.id === id);
   
