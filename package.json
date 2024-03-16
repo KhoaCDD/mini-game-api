@@ -1,0 +1,20 @@
+{
+  "name": "mini-game-api",
+  "version": "1.0.0",
+  "description": "Mini game API for Ha Long students.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.5.0"
+  },
+  "author": "KhoaCDD",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
